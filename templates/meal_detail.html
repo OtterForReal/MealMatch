@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ meal["strMeal"] }}
+{% endblock %}
+
+{% block content %}
+<h2 class="page-title">{{ meal["strMeal"] }}</h2>
+
+<div class="detail-layout">
+    <div class="detail-left">
+        <img class="detail-image" src="{{ meal['strMealThumb'] }}" alt="{{ meal['strMeal'] }}">
+
+        <div class="info-card">
+            <h3>Meal Info</h3>
+            <p><strong>Cuisine:</strong> {{ meal["strArea"] }}</p>
+            <p><strong>Category:</strong> {{ meal["strCategory"] }}</p>
+            <p><strong>Total ingredients:</strong> {{ ingredients|length }}</p>
+        </div>
+    </div>
+
+    <div class="detail-right">
+        <div class="recipe-text">
+            <h3>Ingredients</h3>
+            <ul class="ingredient-list">
+                {% for item in ingredients %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="recipe-text">
+            <h3>Step-by-step Instructions</h3>
+            <ol class="instruction-list">
+                {% for step in instruction_steps %}
+                    <li>{{ step }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="back-button-row">
+    <a class="secondary-button" href="javascript:history.back()">← Back to Results</a>
+    <a class="button-link" href="{{ url_for('index') }}">Start New Search</a>
+</div>
+{% endblock %}

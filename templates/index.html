@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+MealMatch
+{% endblock %}
+
+{% block content %}
+<div class="hero-card">
+    <h2>Find a meal that actually fits what you want</h2>
+    <p class="hero-text">
+        Choose your craving, cuisine, main ingredient, and anything you want to avoid.
+        MealMatch will show meal ideas that fit your search better.
+    </p>
+
+    <form action="{{ url_for('results') }}" method="post" class="search-form">
+        <label for="craving">Craving</label>
+        <select id="craving" name="craving">
+            {% for choice in craving_choices %}
+                <option value="{{ choice }}">{{ choice }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="cuisine">Cuisine</label>
+        <select id="cuisine" name="cuisine">
+            {% for choice in cuisine_choices %}
+                <option value="{{ choice }}">{{ choice }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="ingredient">Main ingredient</label>
+        <input type="text" id="ingredient" name="ingredient" placeholder="Example: chicken, beef, salmon" required>
+
+        <label for="avoid">Ingredients to avoid</label>
+        <input type="text" id="avoid" name="avoid" placeholder="Example: tomato, peanut, mushroom">
+
+        <input type="submit" value="Find Meals">
+    </form>
+</div>
+{% endblock %}
